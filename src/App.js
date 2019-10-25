@@ -15,7 +15,7 @@ class App extends Component {
       {
         id: 2, 
         title: 'Complete coding homework',
-        isComplete: true
+        isComplete: false
       },
       {
         id: 3, 
@@ -30,14 +30,25 @@ class App extends Component {
     ]
   }
 
-  markComplete = () => {
-    console.log('What are you looking at');
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id ) {todo.isComplete = !todo.isComplete}
+        return todo
+      })
+    });
+  }
+
+  deleteToDo = (id) => {
+    this.setState({
+      todos: this.state.todos.filter(todo => id !== todo.id)
+    });
   }
 
   render() {
     return (
       <div className="App">
-        <ToDos todos={this.state.todos} markComplete={this.markComplete}/>
+        <ToDos todos={this.state.todos} markComplete={this.markComplete} deleteToDo={this.deleteToDo}/>
       </div>
     )
   }

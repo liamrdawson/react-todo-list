@@ -23,12 +23,24 @@ export class ToDoItem extends Component {
         }
     }
 
+    buttonStyle = () => {
+        return {
+            border: "none",
+            backgroundColor: "tomato",
+            color: "white",
+            borderRadius: "4px",
+            height: "20px",
+            width: "20px"
+        }
+    }
+
     render() {
         const {id, title} = this.props.todo
         return (
             <div style={this.itemStyle()}>
                 <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>
                 <h3 style={this.titleStyle()}>{title}</h3>
+                <button style={this.buttonStyle()} onClick={this.props.deleteToDo.bind(this, id)} >X</button>
             </div>
         )
     }
