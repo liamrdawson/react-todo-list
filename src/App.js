@@ -30,10 +30,14 @@ class App extends Component {
     ]
   }
 
+  markComplete = () => {
+    console.log('What are you looking at');
+  }
+
   render() {
     return (
       <div className="App">
-        <ToDos todos={this.state.todos}/>
+        <ToDos todos={this.state.todos} markComplete={this.markComplete}/>
       </div>
     )
   }

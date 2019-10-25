@@ -24,10 +24,11 @@ export class ToDoItem extends Component {
     }
 
     render() {
+        const {id, title} = this.props.todo
         return (
             <div style={this.itemStyle()}>
-                <input type="checkbox"/>
-                <h3 style={this.titleStyle()}>{this.props.todo.title}</h3>
+                <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>
+                <h3 style={this.titleStyle()}>{title}</h3>
             </div>
         )
     }
