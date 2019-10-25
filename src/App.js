@@ -15,7 +15,7 @@ class App extends Component {
       {
         id: 2, 
         title: 'Complete coding homework',
-        isComplete: false
+        isComplete: true
       },
       {
         id: 3, 
