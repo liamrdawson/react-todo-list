@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-
-import ToDos from './components/ToDos'
+import uuid from 'uuid';
+import Header from './components/layout/Header';
+import ToDos from './components/todo/ToDos';
+import AddToDo from './components/todo/AddToDo';
 
 class App extends Component {
 
@@ -30,6 +32,7 @@ class App extends Component {
     ]
   }
 
+  //  MARK TODO AS COMPLETE
   markComplete = (id) => {
     this.setState({
       todos: this.state.todos.map(todo => {
@@ -39,16 +42,30 @@ class App extends Component {
     });
   }
 
+  //  DELETE TODO FROM LIST
   deleteToDo = (id) => {
     this.setState({
       todos: this.state.todos.filter(todo => id !== todo.id)
     });
   }
 
+  addToDo = (title) => {
+    const newTodo = {
+      id: uuid.v4(),
+      title,
+      completed: false
+    }
+    this.setState({todos: [...this.state.todos, newTodo] });
+  }
+
   render() {
     return (
       <div className="App">
-        <ToDos todos={this.state.todos} markComplete={this.markComplete} deleteToDo={this.deleteToDo}/>
+        <Header />
+        <div className="container">
+          <AddToDo addToDo={this.addToDo}/>
+          <ToDos todos={this.state.todos} markComplete={this.markComplete} deleteToDo={this.deleteToDo}/>
+        </div>
       </div>
     )
   }
