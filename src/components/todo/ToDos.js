@@ -1,21 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {MyContext} from '../../context/ContextProvider';
 
-import ToDoItem from './ToDoItem';
-import PropTypes from 'prop-types';
-
-export default class ToDos extends Component {
+class ToDos extends Component {
     
     render() {
 
-        return this.props.todos.map((todo) => (
-            <ToDoItem key={todo.id} todo={todo} markComplete={this.props.markComplete} deleteToDo={this.props.deleteToDo}/>
-        ));
-    }
-}
+        return (
 
-//  PROPTYPES
-ToDos.propTypes = {
-    todos: PropTypes.array.isRequired,
-    markComplete: PropTypes.func.isRequired,
-    deleteToDo: PropTypes.func.isRequired
-}
+            <div>
+                <MyContext.Consumer>
+                    {(context) => (
+                        <h1>Hi, my name is {context.name}</h1>
+                    )}
+                </MyContext.Consumer>
+            </div>
+
+            // <MyContext.Consumer>
+            //     {(context) => (
+            //         <React.Fragment>
+            //             <h1>What</h1>
+            //             <h1>{`Hello, my name is ${context.name}`}</h1>   
+            //         </React.Fragment>                    
+            //     )}
+            // </MyContext.Consumer>
+        )
+    }
+};
+
+export default ToDos;

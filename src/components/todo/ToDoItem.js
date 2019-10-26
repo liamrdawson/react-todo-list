@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import ContextProvider from '../../context/ContextProvider';
 
 export class ToDoItem extends Component {
 
@@ -35,22 +35,18 @@ export class ToDoItem extends Component {
     }
 
     render() {
-        const {id, title} = this.props.todo
         return (
-            <div style={this.itemStyle()}>
-                <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/>
-                <h3 style={this.titleStyle()}>{title}</h3>
-                <button style={this.buttonStyle()} onClick={this.props.deleteToDo.bind(this, id)} >X</button>
-            </div>
+            <ContextProvider.Consumer>
+                {(context) => (
+                    <div style={this.itemStyle()}>
+                        <input type="checkbox" onChange={this.props.markComplete.bind(this, context.state.id)}/>
+                        <h3 style={this.titleStyle()}>{context.state.title}</h3>
+                        <button style={this.buttonStyle()} onClick={this.props.deleteToDo.bind(this, context.state.id)} >X</button>
+                    </div>
+                )}
+            </ContextProvider.Consumer>
         )
     }
-}
-
-//  PROPTYPES
-ToDoItem.propTypes = {
-    todo: PropTypes.array.isRequired,
-    markComplete: PropTypes.func.isRequired,
-    deleteToDo: PropTypes.func.isRequired
 }
 
 export default ToDoItem

@@ -30,9 +30,4 @@ export class AddToDo extends Component {
     }
 }
 
-//  PROPTYPES
-AddToDo.propTypes = {
-    addToDo: PropTypes.func.isRequired
-}
-
 export default AddToDo
