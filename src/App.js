@@ -3,7 +3,7 @@ import './App.css';
 import {MyProvider} from './context/ContextProvider';
 import Header from './components/layout/Header';
 import ToDos from './components/todo/ToDos';
-// import AddToDo from './components/todo/AddToDo';
+import AddToDo from './components/todo/AddToDo';
 
 class App extends Component {
 
@@ -14,10 +14,9 @@ class App extends Component {
       <div className="App">
           <Header />
           <div className="container">
-            {/* <AddToDo /> */}
-            
+            <AddToDo />
+            <ToDos />
           </div>
-          <ToDos />
       </div>
       </MyProvider>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ContextProvider from '../../context/ContextProvider';
+import {MyContext} from '../../context/ContextProvider';
 
 export class ToDoItem extends Component {
 
@@ -11,8 +11,8 @@ export class ToDoItem extends Component {
             padding: "6px",
             display: "flex",
             flexDirection: "row",
-            textDecoration: this.props.todo.isComplete ? "line-through" : "none",
-            backgroundColor: this.props.todo.isComplete ? "#f3f3f3"     : "dodgerblue"
+            textDecoration: "none",
+            backgroundColor: "dodgerblue"
         }
     }
 
@@ -36,15 +36,18 @@ export class ToDoItem extends Component {
 
     render() {
         return (
-            <ContextProvider.Consumer>
-                {(context) => (
-                    <div style={this.itemStyle()}>
-                        <input type="checkbox" onChange={this.props.markComplete.bind(this, context.state.id)}/>
-                        <h3 style={this.titleStyle()}>{context.state.title}</h3>
-                        <button style={this.buttonStyle()} onClick={this.props.deleteToDo.bind(this, context.state.id)} >X</button>
-                    </div>
+            <MyContext.Consumer>
+                {context => (
+                    <React.Fragment>
+                        <div style={this.itemStyle()}>
+                            <input type="checkbox" onChange={context.markComplete.bind(this, context.todos.id)}/>
+                            <h3 style={this.titleStyle()}>{this.props.title}</h3>
+                            <button style={this.buttonStyle()} onClick={context.deleteToDo.bind(this, context.todos.id)} >X</button>
+
+                        </div>
+                    </React.Fragment>
                 )}
-            </ContextProvider.Consumer>
+            </MyContext.Consumer>
         )
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {MyContext} from '../../context/ContextProvider';
+import ToDoItem from './ToDoItem';
 
 class ToDos extends Component {
     
@@ -10,19 +11,13 @@ class ToDos extends Component {
             <div>
                 <MyContext.Consumer>
                     {(context) => (
-                        <h1>Hi, my name is {context.name}</h1>
+                        context.todos.map(todo => (
+                            <ToDoItem title={todo.title} isComplete={todo.isComplete}/>
+                        ))
                     )}
                 </MyContext.Consumer>
             </div>
 
-            // <MyContext.Consumer>
-            //     {(context) => (
-            //         <React.Fragment>
-            //             <h1>What</h1>
-            //             <h1>{`Hello, my name is ${context.name}`}</h1>   
-            //         </React.Fragment>                    
-            //     )}
-            // </MyContext.Consumer>
         )
     }
 };
