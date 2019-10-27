@@ -1,9 +1,7 @@
-import React, { Component, useContext } from 'react';
+import React from 'react';
 import {MyContext} from '../../context/ContextProvider';
 
 export const AddToDo = () => {
-
-    const context = useContext(MyContext);
    
     return (
         <MyContext.Consumer>
