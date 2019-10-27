@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 import axios from 'axios';
 
-export const MyContext = React.createContext();
+export const MyContext = createContext();
 
 export class MyProvider extends Component {
 
@@ -26,15 +26,16 @@ export class MyProvider extends Component {
                 userId: 3
             }
         ],
-        name: "Liam"
+        name: "Liam",
+        title: ''
     }
 
-    // componentDidMount() {
-    //     axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-    //         .then(res => this.setState({
-    //             todos: res.data
-    //     }));
-    // }
+    componentDidMount() {
+        axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+            .then(res => this.setState({
+                todos: res.data
+        }));
+    }
 
       //  MARK TODO AS COMPLETE
     markComplete = (id) => {
@@ -62,15 +63,25 @@ export class MyProvider extends Component {
           .then(res => this.setState({ todos: [...this.state.todos, res.data]}))
     } 
 
+    onChange = (e) => this.setState({[e.target.name]: e.target.value});
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.addToDo(this.state.title);
+        this.setState({title: ''});
+    }
 
     render() {
         return (
             <MyContext.Provider value={{
                 name: this.state.name,
                 todos: this.state.todos,
-                addToDo: this.onSubmit,
+                onChange: this.onChange,
+                onSubmit: this.onSubmit,
+                addToDo: this.addToDo,
                 markComplete: this.markComplete,
-                deleteToDo: this.deleteToDo
+                deleteToDo: this.deleteToDo,
+                title: this.state.title
                 }}>
                 {this.props.children}
             </MyContext.Provider>
