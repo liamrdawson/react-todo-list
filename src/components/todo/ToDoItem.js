@@ -11,8 +11,8 @@ export class ToDoItem extends Component {
             padding: "6px",
             display: "flex",
             flexDirection: "row",
-            textDecoration: "none",
-            backgroundColor: "dodgerblue"
+            textDecoration: this.props.todo.completed ? "line-through" : "none",
+            backgroundColor: this.props.todo.completed ? "dodgerblue" : "tomato"
         }
     }
 

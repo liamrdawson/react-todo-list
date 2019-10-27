@@ -6,26 +6,7 @@ export const MyContext = createContext();
 export class MyProvider extends Component {
 
     state = {
-        todos: [
-            {
-                completed: false,
-                id: 1,
-                title: "Complete homework",
-                userId: 1
-            },
-            {
-                completed: false,
-                id: 2,
-                title: "Take out trash",
-                userId: 2
-            },
-            {
-                completed: false,
-                id: 3,
-                title: "Complete coding challenge",
-                userId: 3
-            }
-        ],
+        todos: [ ],
         name: "Liam",
         title: ''
     }
