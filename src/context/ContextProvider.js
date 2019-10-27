@@ -15,15 +15,15 @@ export class MyProvider extends Component {
             },
             {
                 completed: false,
-                id: 1,
+                id: 2,
                 title: "Take out trash",
-                userId: 1
+                userId: 2
             },
             {
                 completed: false,
-                id: 1,
+                id: 3,
                 title: "Complete coding challenge",
-                userId: 1
+                userId: 3
             }
         ],
         name: "Liam"
@@ -52,20 +52,23 @@ export class MyProvider extends Component {
             .then(res => this.setState({todos: [...this.state.todos.filter(todo => id !== todo.id)]}));
     }
 
-    // addToDo = (title) => {
-    //     axios.post('https://jsonplaceholder.typicode.com/todos',
-    //     {
-    //       title, 
-    //       isComplete: false
-    //     })
-    //       .then(res => this.setState({ todos: [...this.state.todos, res.data]}))
-    // } 
+    //  ADD TODO TO LIST 
+    addToDo = (title) => {
+        axios.post('https://jsonplaceholder.typicode.com/todos',
+        {
+          title, 
+          isComplete: false
+        })
+          .then(res => this.setState({ todos: [...this.state.todos, res.data]}))
+    } 
+
 
     render() {
         return (
             <MyContext.Provider value={{
                 name: this.state.name,
                 todos: this.state.todos,
+                addToDo: this.onSubmit,
                 markComplete: this.markComplete,
                 deleteToDo: this.deleteToDo
                 }}>

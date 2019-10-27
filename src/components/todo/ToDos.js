@@ -12,7 +12,7 @@ class ToDos extends Component {
                 <MyContext.Consumer>
                     {(context) => (
                         context.todos.map(todo => (
-                            <ToDoItem title={todo.title} isComplete={todo.isComplete}/>
+                            <ToDoItem key={todo.id} todo={todo} isComplete={todo.isComplete}/>
                         ))
                     )}
                 </MyContext.Consumer>

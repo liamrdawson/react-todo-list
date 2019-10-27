@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import {MyContext} from '../../context/ContextProvider';
 
 export class AddToDo extends Component {
     state = {
@@ -10,22 +10,28 @@ export class AddToDo extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.addToDo(this.state.title);
+        this.addToDo(this.state.title);
         this.setState({title: ''});
+        console.log(this.state.title);
     }
 
     render() {
         return (
-            <form style={{ display:"flex" }} onSubmit={this.onSubmit}>
-                <input  type="text" 
-                        name="title" 
-                        placeHolder="Add to do ..." 
-                        className="add-todo"
-                        value={this.state.title}
-                        onChange={this.onChange}
-                />
-                <input type="submit" value="Submit" className="btn" style={{flex: 1}}/>
-            </form>
+            <MyContext.Consumer>
+                {context => (
+                    <form style={{ display:"flex" }} onSubmit={this.onSubmit}>
+                        <input  type="text" 
+                                name="title" 
+                                placeholder="Add to do ..." 
+                                className="add-todo"
+                                value={this.state.title}
+                                onChange={this.onChange}
+                        />
+                        <input type="submit" value="Submit" className="btn" style={{flex: 1}}/>
+                    </form>
+                )}
+            </MyContext.Consumer>            
+
         )
     }
 }
