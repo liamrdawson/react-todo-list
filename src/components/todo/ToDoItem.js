@@ -40,10 +40,9 @@ export class ToDoItem extends Component {
                 {context => (
                     <React.Fragment>
                         <div style={this.itemStyle()}>
-                            <input type="checkbox" onChange={context.markComplete.bind(this, context.todos.id)}/>
+                            <input type="checkbox" onChange={context.markComplete.bind(this, this.props.todo.id)}/>
                             <h3 style={this.titleStyle()}>{this.props.todo.title}</h3>
                             <button style={this.buttonStyle()} onClick={context.deleteToDo.bind(this, this.props.todo.id)} >X</button>
-
                         </div>
                     </React.Fragment>
                 )}

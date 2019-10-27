@@ -20,9 +20,10 @@ export class MyProvider extends Component {
 
       //  MARK TODO AS COMPLETE
     markComplete = (id) => {
+        console.log(`Hi, my name is ${id}`);
         this.setState({
             todos: this.state.todos.map(todo => {
-                if (todo.id === id ) {todo.isComplete = !todo.isComplete}
+                if (todo.id === id ) {todo.completed = !todo.completed}
                 return todo
             })
         });
