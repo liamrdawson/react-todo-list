@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './scss/App.scss';
 import {MyProvider} from './context/ContextProvider';
 import Header from './components/layout/Header';
 import ToDos from './components/todo/ToDos';
